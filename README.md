@@ -17,15 +17,18 @@ This can be applied to most things: an HTTP(S) server, a database server, etc.
 This command will wait for localhost to listen on port 3000 for up to 20
 seconds.
 
+```
+bin/waitfortcp --host localhost --port 3000 --timeout 20
+```
 
-### Example with `docker-compose`, a databsae, and a Node.JS app
+### Example with `docker-compose`, a database, and a Node.JS app
 
 
 #### ./Dockerfile
 
 Simple Dockerfile for a Node app, notably the entry point is `npm start`.
 
-```YAML
+```
 FROM mhart/alpine-node:latest
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -73,13 +76,11 @@ In `prestart` we wait for the database port to accept a connection before runnin
   "scripts": {
     "prestart": "waitfortcp --host db --port 5432 && db-migrate up",
     "start": "bin/service",
-    "test": "mocha",
-    "start-dev": "ENV=DEV nodemon bin/service"
   },
-  "author": "Project Magnet <magnet@mozilla.com>",
+  "author": "Awesome Developer <you@domain.com>",
   "license": "MPL-2.0",
   "dependencies": {
-    "waitforit": "^1.0.0",
+    "areyoubeingserved": "^1.0.0",
 	"db-migrate": "*"
   }
 }

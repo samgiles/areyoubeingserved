@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+const argv = require('yargs')
+  .usage('Usage: $0 [options]')
+  .alias('h', 'host')
+  .describe('h', 'Hostname to try to connect to, defaults to \'localhost\'')
+  .alias('p', 'port')
+  .describe('p', 'Port to connect to, default to \'PORT\' environment variable if set, then 3000')
+  .alias('t', 'timeout')
+  .describe('t', 'Time in seconds to try connecting, defaults to 10s')
+  .help('help')
+  .argv;
+
+const { waitForTcp } = require('..');
+
+const host = argv.host || 'localhost';
+const port = argv.port || process.env.PORT || 3000;
+const timeout = argv.timeout || 10;
+
+(function start() {
+ waitForTcp(timeout, host, port)()
+ .then(() => {
+	 process.exit(0);
+	 })
+ .catch(() => {
+	 process.exit(1);
+	 });
+ }());

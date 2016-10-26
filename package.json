@@ -1,0 +1,28 @@
+{
+  "name": "areyoubeingserved",
+  "version": "1.0.0",
+  "description": "Are you being served yet? A simple utility to wait for a connection or condition",
+  "main": "index.js",
+  "bin": {
+    "waitfortcp": "bin/waitfortcp"
+  },
+  "keywords": [
+    "wait",
+    "for",
+    "docker",
+    "process",
+    "dependency",
+    "database",
+    "depenency",
+    "connection",
+    "served"
+  ],
+  "author": "Sam Giles <sgiles@mozilla.com>",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "yargs": "^6.3.0"
+  },
+  "optionalDependencies": {
+    "pg": "^6.1.0"
+  }
+}
